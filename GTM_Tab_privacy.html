@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Privacy Policy — GTM Tab</title>
+    <style>
+      :root {
+        --bg: #ffffff;
+        --surface: #f6f7fb;
+        --text: #111322;
+        --muted: #5a6076;
+        --rule: #e3e6ef;
+        --accent: #2d36d1;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0d0f1a;
+          --surface: #171a2b;
+          --text: #e8eaf4;
+          --muted: #a3a9c2;
+          --rule: #2a2e4a;
+          --accent: #b8b3ff;
+        }
+      }
+      * { box-sizing: border-box; }
+      html, body {
+        margin: 0;
+        padding: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+      }
+      main {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 32px 20px 64px;
+      }
+      h1 {
+        font-size: 28px;
+        line-height: 1.25;
+        margin: 0 0 8px;
+      }
+      h2 {
+        font-size: 20px;
+        line-height: 1.3;
+        margin: 32px 0 12px;
+      }
+      p, ul, ol, table { margin: 0 0 16px; }
+      ul, ol { padding-left: 22px; }
+      li { margin-bottom: 6px; }
+      a { color: var(--accent); }
+      .meta {
+        color: var(--muted);
+        font-size: 14px;
+        margin: 0 0 24px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+      }
+      th, td {
+        text-align: left;
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--rule);
+        vertical-align: top;
+      }
+      th {
+        background: var(--surface);
+        font-weight: 600;
+      }
+      code {
+        background: var(--surface);
+        padding: 1px 6px;
+        border-radius: 3px;
+        font-size: 0.92em;
+      }
+      footer {
+        margin-top: 48px;
+        padding-top: 24px;
+        border-top: 1px solid var(--rule);
+        color: var(--muted);
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Privacy Policy — [EXTENSION NAME]</h1>
+      <p class="meta">Last updated: [DATE]</p>
+
+      <h2>Summary</h2>
+      <p>
+        The extension does not collect, transmit, sell, or share any personal
+        data. Everything it stores is kept locally in the user's browser.
+        The only outbound request the extension makes is a read of a public
+        Google Sheet that the team uses to manage the new-tab page's content.
+      </p>
+
+      <h2>What the extension does</h2>
+      <p>
+        [EXTENSION NAME] replaces the Chrome new tab page with a dashboard of
+        internal go-to-market resources — positioning, the current sales deck,
+        curated Drive links, recently updated items, and key contacts — pulled
+        from a Google Sheet that has been published to the web as CSV. The
+        extension fetches that CSV on a schedule, parses it, and renders the
+        result on the new-tab page.
+      </p>
+
+      <h2>Data accessed</h2>
+      <table>
+        <thead>
+          <tr><th>Data</th><th>Where it lives</th><th>Sent anywhere?</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Parsed content of the configured Google Sheet (titles, links, descriptions, layout settings)</td>
+            <td><code>chrome.storage.local</code> — local to the user's browser profile</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <td>Last fetch timestamp and last error message (for the cache banner)</td>
+            <td><code>chrome.storage.local</code></td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <td>Theme preference (<code>light</code> or <code>dark</code>) under the key <code>gtmTabTheme</code></td>
+            <td><code>localStorage</code> on the new-tab page</td>
+            <td>No</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        The extension does not collect or store any of the following:
+        personally identifiable information, health information, financial
+        information, authentication credentials, personal communications,
+        location, browsing history, in-extension activity logs, or the
+        contents of any web pages the user visits.
+      </p>
+
+      <h2>Permissions explained</h2>
+      <ul>
+        <li>
+          <strong><code>storage</code></strong> — caches the parsed Google
+          Sheet content locally so the new-tab page renders instantly while a
+          fresh copy is fetched in the background.
+        </li>
+        <li>
+          <strong><code>alarms</code></strong> — schedules a periodic
+          background re-fetch of the Google Sheet (default every 30 minutes)
+          so the page stays current.
+        </li>
+        <li>
+          <strong>Host permission <code>https://docs.google.com/*</code></strong>
+          — allows the background service worker to fetch the published
+          Google Sheet's CSV export endpoint. The request is anonymous
+          (<code>credentials: "omit"</code>), so no cookies or authentication
+          tokens are sent.
+        </li>
+      </ul>
+
+      <h2>Remote code</h2>
+      <p>
+        The extension does not load or execute any remote JavaScript or
+        WebAssembly. All scripts it runs are bundled with the extension
+        package. There is no use of <code>eval</code>, <code>new Function</code>,
+        dynamic <code>&lt;script&gt;</code> insertion, or remote module
+        imports.
+      </p>
+
+      <h2>Third parties</h2>
+      <p>
+        When the new-tab page is open the user's browser fetches the
+        following passive resources directly from third-party servers. The
+        extension does not send any user data to them; their servers only see
+        whatever a normal browser request includes (IP address, user agent,
+        Referer):
+      </p>
+      <ul>
+        <li>
+          <strong>Google (<code>docs.google.com</code>)</strong> — the
+          configured Google Sheet's CSV export. Subject to
+          <a href="https://policies.google.com/privacy">Google's privacy policy</a>.
+        </li>
+        <li>
+          <strong>Google Fonts (<code>fonts.googleapis.com</code>,
+          <code>fonts.gstatic.com</code>)</strong> — serves the Geist
+          typeface CSS and font files. Subject to
+          <a href="https://policies.google.com/privacy">Google's privacy policy</a>.
+        </li>
+        <li>
+          <strong>Sanity CDN (<code>cdn.sanity.io</code>)</strong> — serves
+          the default GetVocal wordmark logo SVG. Subject to
+          <a href="https://www.sanity.io/legal/privacy">Sanity's privacy policy</a>.
+        </li>
+        <li>
+          <strong>Google Drive (<code>drive.google.com</code>)</strong> — only
+          loaded when an administrator has chosen to set a Drive-hosted image
+          URL in the sheet's <code>Config</code> tab (background image,
+          light-mode logo override, or dark-mode logo override). Subject to
+          <a href="https://policies.google.com/privacy">Google's privacy policy</a>.
+        </li>
+      </ul>
+      <p>
+        These are standard browser asset loads. The extension does not embed
+        analytics, telemetry, advertising, or any third-party SDK.
+      </p>
+
+      <h2>Children</h2>
+      <p>
+        The extension is intended for internal business use by employees and
+        is not directed to children under 13. It does not knowingly collect
+        information from children.
+      </p>
+
+      <h2>Changes to this policy</h2>
+      <p>
+        Material changes to this policy will be reflected by updating the
+        date at the top of this page and, where appropriate, by publishing a
+        new version of the extension. Continued use of the extension after a
+        change constitutes acceptance of the updated policy.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        Questions about this policy or the extension can be sent to
+        <a href="mailto:[YOUR EMAIL]">[YOUR EMAIL]</a>.
+      </p>
+
+      <footer>
+        Maintained by [YOUR NAME / ORGANIZATION].
+        [OPTIONAL: GITHUB URL]
+      </footer>
+    </main>
+  </body>
+</html>
