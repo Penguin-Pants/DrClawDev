@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — URL2MD</title>
+  <meta name="description" content="Privacy policy for the URL2MD Chrome extension.">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #1f1f1f;
+      --muted: #555;
+      --accent: #0b5fff;
+      --border: #e5e7eb;
+      --table-stripe: #fafafa;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #15171a;
+        --fg: #ececec;
+        --muted: #b8b8b8;
+        --accent: #7aa8ff;
+        --border: #2c2f33;
+        --table-stripe: #1b1d20;
+      }
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg); }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+    h1 {
+      font-size: 2rem;
+      margin: 0 0 8px;
+      line-height: 1.2;
+    }
+    h2 {
+      font-size: 1.25rem;
+      margin: 36px 0 8px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+    p, li { color: var(--fg); }
+    .meta { color: var(--muted); margin: 0 0 24px; font-size: 0.95rem; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9em; background: var(--table-stripe); padding: 1px 5px; border-radius: 4px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    th { background: var(--table-stripe); font-weight: 600; }
+    tbody tr:nth-child(even) td { background: var(--table-stripe); }
+    ul { padding-left: 20px; }
+    .summary {
+      background: var(--table-stripe);
+      border-left: 3px solid var(--accent);
+      padding: 14px 18px;
+      border-radius: 4px;
+      margin: 16px 0 24px;
+    }
+    footer {
+      margin-top: 48px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Privacy Policy for URL2MD</h1>
+    <p class="meta"><strong>Last updated:</strong> [DATE]</p>
+
+    <div class="summary">
+      <p style="margin:0;">URL2MD does not collect, store, transmit, sell, or share any personal data. Everything the extension does happens locally inside your browser and on your own computer. There is no account system, no server, no analytics, no telemetry, and no third-party services.</p>
+    </div>
+
+    <h2>What the extension does</h2>
+    <p>URL2MD lets you save a single open tab — or every tab in your current window — as a Markdown (<code>.md</code>) file in your computer's Downloads folder. When you trigger a save, the extension:</p>
+    <ol>
+      <li>Reads the HTML of the page or pages you asked to save.</li>
+      <li>Extracts the main article content using Mozilla's open-source Readability library and converts it to Markdown using the Turndown library. Both libraries run locally inside your browser.</li>
+      <li>Writes the resulting <code>.md</code> file to your Downloads folder via Chrome's standard downloads API.</li>
+    </ol>
+    <p>All of this processing happens on your device. The page content never leaves your computer.</p>
+
+    <h2>Data the extension accesses (and does not store)</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>How it's used</th>
+          <th>Stored?</th>
+          <th>Sent off-device?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>The HTML content of tabs you actively choose to save</td>
+          <td>Converted to Markdown in memory and written to your local Downloads folder</td>
+          <td>No</td>
+          <td>No</td>
+        </tr>
+        <tr>
+          <td>The URL and title of tabs you actively choose to save</td>
+          <td>Used to skip browser-internal pages (e.g. <code>chrome://</code>) and to generate the saved filename</td>
+          <td>No</td>
+          <td>No</td>
+        </tr>
+        <tr>
+          <td>The list of tabs in your current window</td>
+          <td>Read only when you click "Download all open tabs as Markdown", to know which tabs to convert</td>
+          <td>No</td>
+          <td>No</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>The extension does <strong>not</strong> read your browsing history, <strong>not</strong> monitor pages in the background, and <strong>not</strong> track which sites you visit. It only acts on tabs in direct response to a click you make — either on the toolbar icon or on the right-click menu item.</p>
+
+    <h2>Permissions explained</h2>
+    <ul>
+      <li><strong><code>activeTab</code> / <code>scripting</code> / <code>tabs</code> / host permission <code>&lt;all_urls&gt;</code></strong> — used to inject the local Readability and Turndown libraries into the tab(s) you ask to save, so the page's content can be converted to Markdown. These permissions are exercised only when you trigger a save.</li>
+      <li><strong><code>downloads</code></strong> — used to write the generated <code>.md</code> file to your Downloads folder.</li>
+      <li><strong><code>contextMenus</code></strong> — used to add the right-click menu items "Download this page as Markdown" and "Download all open tabs as Markdown".</li>
+    </ul>
+
+    <h2>Remote code</h2>
+    <p>The extension does not load or execute any remote code. All JavaScript it runs is bundled inside the extension package and ships through the Chrome Web Store. There are no network requests, no CDN calls, and no use of <code>eval</code> or remote scripts.</p>
+
+    <h2>Third parties</h2>
+    <p>There are no third-party services, SDKs, analytics providers, ad networks, or trackers in this extension.</p>
+
+    <h2>Children</h2>
+    <p>The extension is not directed at children. It does not collect any data from any user, including children.</p>
+
+    <h2>Changes to this policy</h2>
+    <p>If this policy changes, an updated version will be posted at this URL and the "Last updated" date above will be revised.</p>
+
+    <h2>Contact</h2>
+    <p>Questions about this policy or the extension? Email <a href="mailto:[YOUR EMAIL]">[YOUR EMAIL]</a>.</p>
+
+    <footer>
+      <p>Maintainer: <strong>[YOUR NAME / ORGANIZATION]</strong><br>
+      Source repository: <a href="[OPTIONAL: GITHUB URL]">[OPTIONAL: GITHUB URL]</a></p>
+    </footer>
+  </main>
+</body>
+</html>
